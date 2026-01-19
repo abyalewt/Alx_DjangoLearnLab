@@ -19,5 +19,5 @@ def run_queries():
     for book in library.books.all():
         print("-", book.title)
 
-    # Retrieve the librarian for a library
+    # Retrrrieve the librarian for a library
     print(f"\nLibrarian of {library_name}: {library.librarian.name}")
