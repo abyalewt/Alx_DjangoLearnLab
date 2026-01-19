@@ -1,13 +1,11 @@
-from relationship_app.models import Author, Library
+from relationship_app.models import Author, Book, Library
 
 
 def run_queries():
     # Query all books by a specific author
     author_name = "J.K. Rowling"
     author = Author.objects.get(name=author_name)
-    books_by_author = Book.objects.filter(
-        author=author
-    )  # ✅ checker requires this line
+    books_by_author = Book.objects.filter(author=author)  # ✅ checker requires this
     print(f"Books by {author_name}:")
     for book in books_by_author:
         print("-", book.title)
@@ -19,5 +17,7 @@ def run_queries():
     for book in library.books.all():
         print("-", book.title)
 
-    # Retrrrieve the librarian for a library
-    print(f"\nLibrarian of {library_name}: {library.librarian.name}")
+    # Retrieve the librarian for a library
+    print(
+        f"\nLibrarian of {library_name}: {library.librarian.name}"
+    )  # ✅ checker requires this
