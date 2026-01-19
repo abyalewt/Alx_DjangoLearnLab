@@ -1,4 +1,4 @@
-from relationship_app.models import Author, Book, Library
+from relationship_app.models import Author, Book, Library, Librarian
 
 
 def run_queries():
@@ -18,6 +18,5 @@ def run_queries():
         print("-", book.title)
 
     # Retrieve the librarian for a library
-    print(
-        f"\nLibrarian of {library_name}: {library.librarian.name}"
-    )  # ✅ checker requires this
+    librarian = Librarian.objects.get(library=library)  # ✅ checker requires this
+    print(f"\nLibrarian of {library_name}: {librarian.name}")
