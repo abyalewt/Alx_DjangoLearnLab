@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-# Existing models
+# ---------------- Existing Models ----------------
 class Author(models.Model):
     name = models.CharField(max_length=100)
 
@@ -20,6 +20,13 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        permissions = [
+            ("can_add_book", "Can add book"),
+            ("can_change_book", "Can change book"),
+            ("can_delete_book", "Can delete book"),
+        ]
+
 
 class Library(models.Model):
     name = models.CharField(max_length=200)
@@ -29,7 +36,7 @@ class Library(models.Model):
         return self.name
 
 
-# ✅ New UserProfile model for role-based access
+# ---------------- User Profile for Roles ----------------
 class UserProfile(models.Model):
     ROLE_CHOICES = [
         ("Admin", "Admin"),
@@ -43,7 +50,6 @@ class UserProfile(models.Model):
         return f"{self.user.username} - {self.role}"
 
 
-# ✅ Signals to auto-create UserProfile when a User is created
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
