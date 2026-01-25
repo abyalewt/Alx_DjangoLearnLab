@@ -2,7 +2,7 @@ from .forms import BookForm, ExampleForm
 
 # ✅ Required import
 
-
+from .forms import ExampleForm
 # Secure search using ORM
 @permission_required("bookshelf.can_view", raise_exception=True)
 def book_list(request):
